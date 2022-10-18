@@ -8,7 +8,7 @@ import { CoffeeModule } from './coffee/coffee.module';
 import { SharedModule } from './shared/shared.module';
 
 @Module({
-  imports: [ConfigModule.forRoot({ envFilePath: '.env' })],
+  imports: [ConfigModule.forRoot({ envFilePath: '.env' }), CoffeeModule],
   controllers: [AppController],
   providers: [AppService, SharedService],
 })
