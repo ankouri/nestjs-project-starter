@@ -5,29 +5,24 @@ import { CoffeeService } from './coffee.service';
 
 @Controller('coffee')
 export class CoffeeController {
-  constructor(private sharedSrv: SharedService, private coffeeServ: CoffeeService) {}
-  @Post()
-  addNewCoffe(@Body() body :Coffee): void {
-    return this.coffeeServ.addNewOne(body);
-  }
- // GET LIST OF COFFEES
+  constructor(private srv: CoffeeService) { }
   @Get()
-  getAlllist() {
-    return this.coffeeServ.getAll();
+  get() {
+      return this.srv.findAll();
   }
-  //GET COFEE BY ID
-  @Get(':id')
-  getById(@Param('id') id :number) {
-    return this.coffeeServ.getCoffeeById(id);
+
+  @Post()
+  create(@Body() body: Coffee) {
+      return this.srv.create(body)
   }
-  //DELETE
-  @Delete(':id')
-  deleteCoffee(@Param('id') id :any): any {
-    return this.coffeeServ.deleteCoffee(id);
-  }
-  //UPDATE
+
   @Patch(':id')
-  updateCoffe(@Param('id') id :any, @Body() body :Coffee){
-   return this.coffeeServ.updateCoffee(id, body);
+  update(@Param('id') id, @Body() body: Coffee) {
+      return this.srv.update(id, body)
+  }
+
+  @Delete(':id')
+  delete(@Param('id') id) {
+      return this.srv.delete(id)
   }
 }
